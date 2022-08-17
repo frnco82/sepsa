@@ -35,9 +35,9 @@ def predict():
     output='{:0.1f} %'.format(prediction[0][1]*100, 2)    ## Formating output
 
     if output>str(0.5):
-        return render_template('index.html',pred='Verjetnost sepse: {}'.format(output)) ## Returning the message for use on the same index.html page
+        return render_template('index.html',pred='Probability of sepsis: {}'.format(output)) ## Returning the message for use on the same index.html page
     else:
-        return render_template('index.html',pred='Verjetnost SEPSE {}'.format(output)) 
+        return render_template('index.html',pred='Probability of sepsis {}'.format(output)) 
 
 
 
