@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Napoved SEPSE pri novorojenčkih</title>
+  <title>Predicting Neonatal Sepsis</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
@@ -14,27 +14,27 @@
 
 <body>
 <nav class="light-blue lighten-1" role="navigation">
-	<h1>Napoved SEPSE pri novorojenčkih</h1>
-     <h5> Vnesi vrednosti v spodnja polja:</h5>
+	<h1>Predicting Neonatal Sepsis</h1>
+     <h5> Enter values in the fields below:</h5>
 </nav>
 
      <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}"method="post">
-		<input type="text" name="1" placeholder="Spol (0=m; 1=ž)" required="required" />
-		<input type="text" name="2" placeholder="Porod_V_SC (0=vaginalni)" required="required" />
-		<input type="text" name="3" placeholder="Apgar 5 [1=(1-6); 0=(7-10)]" required="required" />
-		<input type="text" name="4" placeholder="GS" required="required" />
-		<input type="text" name="5" placeholder="Porodna teža" required="required" />
-		<input type="text" name="6" placeholder="Starost ob bolezni" required="required" />		
-    	<input type="text" name="7" placeholder="Levkociti (za decimalko uporabite piko)" required="required" />
-    	<input type="text" name="8" placeholder="Paličasti" required="required" />
-    	<input type="text" name="9" placeholder="Limfociti" required="required" />
-    	<input type="text" name="10" placeholder="Morfološke spremembe nevtrofilci (0-ni; 1-so)" required="required" />
-    	<input type="text" name="11" placeholder="Trombociti" required="required" />
-    	<input type="text" name="12" placeholder="CRP (za decimalko uporabite piko)" required="required" />
-    	<input type="text" name="13" placeholder="PCT (za decimalko uporabite piko)" required="required" />
+		<input type="text" name="1" placeholder="Gender (0=male; 1=female)" required="required" />
+		<input type="text" name="2" placeholder="Type of Childbirth Delivery (0=vaginal)" required="required" />
+		<input type="text" name="3" placeholder="5-Minute Apgar Score [1=(1-6); 0=(7-10)]" required="required" />
+		<input type="text" name="4" placeholder="Gestational Age" required="required" />
+		<input type="text" name="5" placeholder="Birth Weight" required="required" />
+		<input type="text" name="6" placeholder="Age of Onset" required="required" />		
+    	<input type="text" name="7" placeholder="Leukocyte Count (for decimal use dot)" required="required" />
+    	<input type="text" name="8" placeholder="Immature Neutrophile Percentage" required="required" />
+    	<input type="text" name="9" placeholder="Lymphocyte Percentage" required="required" />
+    	<input type="text" name="10" placeholder="Presence of Toxic Granulations (0-absent; 1-present)" required="required" />
+    	<input type="text" name="11" placeholder="Thrombocyte Count" required="required" />
+    	<input type="text" name="12" placeholder="Serum CRP Concentration (for decimal use dot)" required="required" />
+    	<input type="text" name="13" placeholder="Serum PCT Concentration (for decimal use dot)" required="required" />
 
-        <button type="submit" class="btn">Izračunaj</button>
+        <button type="submit" class="btn">Calculate</button>
     </form>
 
    <br>
