@@ -1,59 +1,143 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="UTF-8">
-  <title>Predicting Neonatal Sepsis</title>
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-</head>
-
-<body>
-<nav class="light-blue lighten-1" role="navigation">
-	<h1>Predicting Neonatal Sepsis</h1>
-     <h5> Enter values in the fields below:</h5>
-</nav>
-
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}"method="post">
-		<input type="text" name="1" placeholder="Gender (0=male; 1=female)" required="required" />
-		<input type="text" name="2" placeholder="Type of Childbirth Delivery (0=vaginal)" required="required" />
-		<input type="text" name="3" placeholder="5-Minute Apgar Score [1=(1-6); 0=(7-10)]" required="required" />
-		<input type="text" name="4" placeholder="Gestational Age" required="required" />
-		<input type="text" name="5" placeholder="Birth Weight" required="required" />
-		<input type="text" name="6" placeholder="Age of Onset" required="required" />		
-    	<input type="text" name="7" placeholder="Leukocyte Count (for decimal use dot)" required="required" />
-    	<input type="text" name="8" placeholder="Immature Neutrophile Percentage" required="required" />
-    	<input type="text" name="9" placeholder="Lymphocyte Percentage" required="required" />
-    	<input type="text" name="10" placeholder="Presence of Toxic Granulations (0-absent; 1-present)" required="required" />
-    	<input type="text" name="11" placeholder="Thrombocyte Count" required="required" />
-    	<input type="text" name="12" placeholder="Serum CRP Concentration (for decimal use dot)" required="required" />
-    	<input type="text" name="13" placeholder="Serum PCT Concentration (for decimal use dot)" required="required" />
-
-        <button type="submit" class="btn">Calculate</button>
-    </form>
-
-   <br>
-   <br>
-   {{ pred }}
-
-   <br>
-   <br>
-   <br>
-   <br>
-	<footer>
-	<div>
-	<p style="text-align:left; font-size:60%;">&copy; Franci Čuček (franci@analyst.si)</p>
-
-	</div>
-	</footer>
-
- </div>
-
-</body>
+  
+  <head>
+    <meta charset="UTF-8">
+      <title>Predicting Neonatal Sepsis</title>
+      <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'/>
+      <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'/>
+      <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'/>
+      <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'/>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+  </head>
+  
+  <body>
+    <div style="width:100%; margin: auto; background-color: #fff">
+      
+    <!-- Main Input For Receiving Query to our ML -->
+    <div class="form_container">
+      <h1>Predicting Neonatal Sepsis</h1>
+      <h5 style="text-align: left">Enter values in the fields below:</h5>
+      <form action="{{ url_for('predict')}}"method="post">
+        <input id="1" type="text" name="1" placeholder="Gender (0=male; 1=female)" required="required" />
+        <input id="2" type="text" name="2" placeholder="Type of Childbirth Delivery (0=vaginal)" required="required" />
+        <input id="3" type="text" name="3" placeholder="5-Minute Apgar Score [1=(1-6); 0=(7-10)]" required="required" />
+        <input id="4" type="text" name="4" placeholder="Gestational Age" required="required" />
+        <input id="5" type="text" name="5" placeholder="Birth Weight" required="required" />
+        <input id="6" type="text" name="6" placeholder="Age of Onset" required="required" />
+        <input id="7" type="text" name="7" placeholder="Leukocyte Count (for decimal use dot)" required="required" />
+        <input id="8" type="text" name="8" placeholder="Immature Neutrophile Percentage" required="required" />
+        <input id="9" type="text" name="9" placeholder="Lymphocyte Percentage" required="required" />
+        <input id="10" type="text" name="10" placeholder="Presence of Toxic Granulations (0-absent; 1-present)" required="required" />
+        <input id="11" type="text" name="11" placeholder="Thrombocyte Count" required="required" />
+        <input id="12" type="text" name="12" placeholder="Serum CRP Concentration (for decimal use dot)" required="required" />
+        <input id="13" type="text" name="13" placeholder="Serum PCT Concentration (for decimal use dot)" required="required" />
+        <button type="submit" class="btn" style="background:#ad1457;color:#fff">Calculate</button>
+        <br/>
+      </form>
+    <div>
+    
+    <div>
+      <button type="" class="btn" id="clear">Clear</button>
+      <button type="" class="btn" id="pos">Proven sepsis</button>
+      <button type="" class="btn" id="neg">Probable sepsis</button>
+      <button type="" class="btn" id="ctrl">Control group</button>
+    </div>
+    <br>
+    <br>
+    <div id={{ id }}>
+    {{ pred }}
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <footer>
+      <div>
+        <p style="text-align:right; font-size:60%;">@ Špela But (sb5920@student.uni-lj.si)</p>
+        <p style="text-align:right; font-size:60%;">@ Brigita Celar (bc3715@student.uni-lj.si)</p>
+        <p style="text-align:left; font-size:60%;">&copy; Franci Čuček (franci@analyst.si)</p>
+      </div>
+    </footer>
+    
+    <script>
+      const positive = [
+        "0", // gender
+        "0", // type of delivery
+        "9", // apgar
+        "40", // gestational age
+        "3900", // birth weight
+        "5", // age of onset
+        "10.6", // leukocyte count
+        "36", // neutrophile percentage
+        "7", // lymphocyte percentage
+        "0", // toxic granulations
+        "234", // thrombocyte count
+        "21", // CRP
+        "3.56" // PCT
+      ];
+      const negative = [
+        "0", // gender
+        "0", // type of delivery
+        "9", // apgar
+        "37", // gestational age
+        "3090", // birth weight
+        "21", // age of onset
+        "12.8", // leukocyte count
+        "0", // neutrophile percentage
+        "32", // lymphocyte percentage
+        "0", // toxic granulations
+        "363", // thrombocyte count
+        "10", // CRP
+        "2.87" // PCT
+      ];
+      const control = [
+        "1", // gender
+        "0", // type of delivery
+        "9", // apgar
+        "40", // gestational age
+        "2970", // birth weight
+        "6", // age of onset
+        "7.9", // leukocyte count
+        "0", // neutrophile percentage
+        "51", // lymphocyte percentage
+        "0", // toxic granulations
+        "290", // thrombocyte count
+        "2.6", // CRP
+        "0" // PCT
+      ]
+      
+      var button = document.getElementById('pos');
+      button.addEventListener('click', function() {
+        for (let i = 1; i < 14; i++) {
+          var input = document.getElementById(i);
+          input.value = positive[i-1];
+        }
+      });
+      button = document.getElementById('neg');
+      button.addEventListener('click', function() {
+        for (let i = 1; i < 14; i++) {
+          var input = document.getElementById(i);
+          input.value = negative[i-1];
+        }
+      });
+      button = document.getElementById('ctrl');
+      button.addEventListener('click', function() {
+        for (let i = 1; i < 14; i++) {
+          var input = document.getElementById(i);
+          input.value = control[i-1];
+        }
+      });
+      button = document.getElementById('clear');
+      button.addEventListener('click', function() {
+        for (let i = 1; i < 14; i++) {
+          var input = document.getElementById(i);
+          input.value = "";
+        }
+      });
+      
+      document.getElementById('prediction').scrollIntoView();
+    </script>
+  </body>
 </html>
 
