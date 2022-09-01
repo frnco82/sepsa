@@ -34,10 +34,7 @@ def predict():
     prediction=model.predict_proba(row_df) ## Predicting the output
     output='{:0.1f} %'.format(prediction[0][1]*100, 2)    ## Formating output
 
-    if output>str(0.5):
-        return render_template('index.html',pred='Probability of sepsis: {}'.format(output)) ## Returning the message for use on the same index.html page
-    else:
-        return render_template('index.html',pred='Probability of sepsis {}'.format(output)) 
+    return render_template('index.html',pred='Probability of sepsis: {}'.format(output), id='prediction') ## Returning the message for use on the same index.html page
 
 
 
